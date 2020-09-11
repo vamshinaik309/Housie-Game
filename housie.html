@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<p>Housie game</p>
+	<button onclick="fun()" >
+		Generate Random Number
+	</button>
+	<div id="root"></div>
+	<p>The initial Token is (Empty spaces given by -1)</p>
+	<p id="temp"></p>
+	<p id="noof"></p>
+	<p>The Changed Token is (Numbers are marked as Zeroes if found) </p>
+	<div id="ro"></div>
+	<script >
+		var myset= new Set();
+		var curr=0;
+// 2d array
+		
+		var gfg = new Array(9); 
+		for (var i = 0; i < 9; i++) { 
+		    gfg[i] = new Array(3); 
+		} 
+		var h=0;
+		for (var i = 0; i < 3; i++) { 
+		    for (var j = 0; j < 9; j++) { 
+		        gfg[i][j] = -1; 
+		    } 
+		} 
+		var tempset=new Set();
+			while(tempset.size!=15)
+			{
+				var x=getRndInteger(1,90);
+				tempset.add(x);
+			}
+			var myarr=Array.from(tempset);
+			gfg[0][0]=myarr[0];
+			gfg[0][2]=myarr[1];
+			gfg[0][3]=myarr[2];
+			gfg[0][5]=myarr[3];
+			gfg[0][7]=myarr[4];
+			gfg[1][1]=myarr[5];
+			gfg[1][3]=myarr[6];
+			gfg[1][5]=myarr[7];
+			gfg[1][7]=myarr[8];
+			gfg[1][8]=myarr[9];
+			gfg[2][0]=myarr[10];
+			gfg[2][2]=myarr[11];
+			gfg[2][4]=myarr[12];
+			gfg[2][6]=myarr[13];
+			gfg[2][8]=myarr[14];
+			var txt="";
+			
+			for (var i = 0; i < 3; i++) { 
+			    for (var j = 0; j < 9; j++)    { 
+			    	txt+=gfg[i][j]+" 	  ";
+			        // document.write(gfg[i][j] + "  "); 
+			    } 
+			    txt += "<br>";
+			    // document.write("<br>"); 
+			}  
+
+			document.getElementById("temp").innerHTML=txt;
+// 
+// 
+			// document.write(curr);	
+			
+			function getRndInteger(min, max) {
+		  return Math.floor(Math.random() * (max - min + 1) ) + min;
+		}
+		// function temp var x=getRndInteger(1,90);
+		//    document.write(x);
+
+		function fun()
+		{
+			var x=getRndInteger(1,90);
+			var beforesize=myset.size;
+			if(beforesize==90)
+				alert("All numbers are completed");
+			while(1 && beforesize!=90)
+			{
+				if(myset.has(x))
+					 x=getRndInteger(1,90);
+				else
+					break;
+			}
+			myset.add(x);
+			// if(myset.size!=90)
+			// while(beforesize==myset.size)
+			// {
+			// myset.add(x);
+			//  x=getRndInteger(1,90);
+			// }
+			// else
+			// {
+			// 	alert("All numbers are completed");
+			// }
+			var tex="";
+			for(var i=0;i<3;i++)
+			{
+				for(var j=0;j<9;j++)
+				{
+					if(gfg[i][j]===x)
+					{
+						// gfg[i][j]=gfg[i][j].fontcolor("blue");
+						gfg[i][j]=0;
+						curr+=1;
+					}
+					else
+					tex+=gfg[i][j]+"	   ";
+				}
+				tex += "<br>";
+			}
+			// var noofvaluesfound="No of numbers found :"+ curr;
+			// document.getElementById("noof").innerHTML=curr;
+			
+			// for (var i = 0; i < 3; i++) { 
+			//     for (var j = 0; j < 9; j++)    { 
+			//     	tex+=gfg[i][j]+" ";
+			//         // document.write(gfg[i][j] + "  "); 
+			//     } 
+			//     tex += "<br>";
+			//     // document.write("<br>"); 
+			// }  
+			document.getElementById("ro").innerHTML=tex;
+
+
+
+			document.getElementById('root').innerHTML=x;
+			curr=x;
+			
+			// document.write(curr);
+		}
+
+	</script>
+</body>	
+</html>
